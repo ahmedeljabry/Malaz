@@ -1,0 +1,977 @@
+
+@font-face {
+    font-family: 'Inter bold';
+    src: url('../fonts/Inter-Bold.eot');
+    src: url('../fonts/Inter-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/Inter-Bold.woff2') format('woff2'), url('../fonts/Inter-Bold.woff') format('woff'), url('../fonts/Inter-Bold.ttf') format('truetype'), url('../fonts/Inter-Bold.svg#Inter') format('svg');
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter-Regular.eot');
+    src: url('../fonts/Inter-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Inter-Regular.woff2') format('woff2'), url('../fonts/Inter-Regular.woff') format('woff'), url('../fonts/Inter-Regular.ttf') format('truetype'), url('../fonts/Inter-Regular.svg#Inter') format('svg');
+}
+
+@font-face {
+    font-family: 'Neue Frutiger World';
+    src: url('../fonts/NeueFrutigerWorld-Regular.eot');
+    src: url('../fonts/NeueFrutigerWorld-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/NeueFrutigerWorld-Regular.woff2') format('woff2'), url('../fonts/NeueFrutigerWorld-Regular.woff') format('woff'), url('../fonts/NeueFrutigerWorld-Regular.ttf') format('truetype'), url('../fonts/NeueFrutigerWorld-Regular.svg#Neue Frutiger World') format('svg');
+}
+
+@font-face {
+    font-family: 'Neue Frutiger World bold';
+    src: url('../fonts/NeueFrutigerWorld-Bold.eot');
+    src: url('../fonts/NeueFrutigerWorld-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/NeueFrutigerWorld-Bold.woff2') format('woff2'), url('../fonts/NeueFrutigerWorld-Bold.woff') format('woff'), url('../fonts/NeueFrutigerWorld-Bold.ttf') format('truetype'), url('../fonts/NeueFrutigerWorld-Bold.svg#Neue Frutiger World') format('svg');
+}
+
+
+
+html {
+    scroll-behavior: smooth !important;
+    direction:ltr;
+}
+
+body {
+    scroll-behavior: smooth !important;
+    direction: rtl;
+    margin: 0;
+    font-family: 'Neue Frutiger World';
+}
+
+.hero {
+   /* display: flex;
+    align-items: end;
+    justify-content: space-between;
+    padding: 50px;
+    background: #fff;
+    overflow: hidden;
+    padding: 100px 50px 0 50px;
+    background: #fff;
+    overflow: hidden;*/
+    background-image: url(../img/ss2.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 99%;
+}
+
+.hero-text-container {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 1s ease-in-out 0.5s;
+    /*margin-right: -50px;*/
+    /*max-width: 50%;*/
+    display:flex;
+    flex-direction:column;
+    position:relative;
+
+}
+
+/*@media(min-width:991px) {
+    .hero-text-container {
+        height: 50vh;
+    }
+
+    .container-2030{
+        bottom:0;
+    }
+
+}*/
+
+
+
+.hero-text {
+    transform: skew(-10deg, 0deg);
+    /*background: #4FC3F7;*/
+    padding: 40px 70px 0 0;
+    border-radius: 50px;
+    /*margin-top: -70px;*/
+}
+
+    .hero-text h1 {
+        font-size: 48px;
+        font-weight: bold;
+        margin: 0;
+        color: #000;
+        transform: skew(10deg, 0deg);
+        margin-bottom: 24px;
+    }
+
+.btn-hero {
+    padding: 10px 20px;
+    background: #320C97;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    transform: skew(0deg, 0deg);
+    transition: ease 0.3s;
+    width: max-content;
+}
+
+    .btn-hero p {
+        transform: skew(10deg, 0deg);
+        margin-bottom: 0 !important;
+        transition: ease 0.3s;
+    }
+
+    .btn-hero:hover {
+        background: #2b1072;
+        transform: scale(1.1) skew(10deg, 0deg);
+    }
+
+
+
+        .btn-hero:hover p {
+            transform: skew(0deg, 0deg);
+            margin-bottom: 0 !important;
+        }
+
+.hero-image {
+/*    max-width: 50%;
+*/    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 1s ease-in-out 0.7s;
+    width: 100%;
+}
+
+    .hero-image img {
+        max-width: 100%;
+        height: auto;
+        width: 100%;
+    }
+
+.container-2030 {
+    background-image: url('../img/VectorRtl.png');
+    background-position: right;
+    background-repeat: no-repeat;
+    /*position: absolute;*/
+    width: 100%;
+    right: -50px;
+    display: flex;
+    justify-content: end;
+    background-size: contain;
+    margin-top: 16px;
+    padding: 40px 0;
+}
+
+    .container-2030 img {
+        width: 136px;
+    }
+
+/* Active class to trigger animations */
+.hero-text-container.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.hero-image.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+@media(max-width:991px){
+
+    .hero {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        padding: 0 24px;
+        background: #fff;
+        overflow: visible;
+        margin-bottom: 100px;
+    }
+
+    .hero-text-container {
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 1s ease-in-out 0.5s;
+        /*margin-right: -100px;*/
+        max-width: 80%;
+    }
+
+    .hero-text {
+        transform: skew(-10deg, 0deg);
+        background: #4FC3F7;
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+        .hero-text h1 {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+            color: #000;
+            transform: skew(10deg, 0deg);
+        }
+
+        .hero-text button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #320C97;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: ease 0.3s;
+        }
+
+            .hero-text button p {
+                transform: skew(10deg, 0deg);
+                transition: ease 0.3s;
+            }
+
+
+            .hero-text button:hover {
+                background: #2b1072;
+                transform: scale(1.1);
+            }
+
+
+
+                .hero-text button:hover p {
+                    transform: skew(10deg, 0deg);
+                    margin-bottom: 0 !important;
+                }
+
+    .hero-image {
+        max-width: 50%;
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: all 1s ease-in-out 0.7s;
+    }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    .container-2030 {
+        background-image: url('../img/VectorRtl.png');
+        background-repeat: no-repeat;
+        position: absolute;
+        width: 100%;
+        right: -50px;
+        display: flex;
+        justify-content: end;
+        background-size: contain;
+        margin-top: 8px;
+        padding: 10px 0;
+    }
+
+        .container-2030 img {
+            width: 136px;
+        }
+
+    /* Active class to trigger animations */
+    .hero-text-container.active {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .hero-image.active {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
+@media(min-width:1441px) {
+    .hero {
+        align-items: start;
+    }
+
+    .hero-text {
+        margin-top: 0px;
+    }
+}
+
+
+
+
+.nav-link.lang {
+    font-family: 'Inter bold';
+}
+
+.bg-body-tertiary {
+    --bs-bg-opacity: 1;
+    background-color: rgb(255 255 255) !important;
+}
+
+.nav-link {
+    color: #000;
+    transition:ease 0.3s;
+}
+
+    .nav-link:focus, .nav-link:hover {
+        color: #320C97;
+    }
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: #320C97;
+    font-family: 'Neue Frutiger World bold';
+}
+
+.btn-purple {
+    padding: 10px 20px;
+    background: #320C97;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    transform: skew(-10deg, 0deg);
+    transition: ease 0.3s;
+    width:max-content;
+}
+
+    .btn-purple p {
+        transform: skew(10deg, 0deg);
+        margin-bottom: 0 !important;
+        transition: ease 0.3s;
+    }
+
+    .btn-purple:hover {
+        background: #2b1072;
+        transform: scale(1.1);
+    }
+
+
+
+        .btn-purple:hover p {
+            transform: skew(0deg, 0deg);
+            margin-bottom: 0 !important;
+        }
+
+
+
+
+
+    .btn-cyan {
+        padding: 10px 20px;
+        background: #62CCF4;
+        color: #320C97;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 18px;
+        text-transform: uppercase;
+        transform: skew(-10deg, 0deg);
+        transition: ease 0.3s;
+        width: max-content;
+    }
+
+    .btn-cyan p {
+        transform: skew(10deg, 0deg);
+        margin-bottom: 0 !important;
+        transition: ease 0.3s;
+    }
+
+    .btn-cyan:hover {
+        background: #62CCF4;
+        transform: scale(1.1);
+    }
+
+
+
+        .btn-cyan:hover p {
+            transform: skew(0deg, 0deg);
+            margin-bottom: 0 !important;
+        }
+
+.title {
+    font-size: 40px;
+    text-transform: uppercase;
+    font-family: 'Neue Frutiger World bold';
+}
+
+
+
+.font-18 {
+    font-size: 18px;
+}
+
+
+.service-section {
+    background-color: #F6F6F6;
+    border-radius:50px 0 50px 0;
+}
+
+.service-slider-item-white {
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 20px;
+    min-height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -3px 4px 11.2px 0 rgba(0, 0, 0, 0.06);
+    transition: ease 0.3s;
+    cursor: pointer;
+    direction: rtl;
+}
+.service-slider-item-cyan {
+    background-color: #E9F2F6;
+    padding: 32px;
+    border-radius: 20px;
+    min-height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -3px 4px 11.2px 0 rgba(0, 0, 0, 0.06);
+    transition: ease 0.3s;
+    cursor: pointer;
+    direction: rtl;
+}
+
+.service-slider-item-purple {
+    background-color: #320C97;
+    padding: 32px;
+    border-radius: 20px;
+    min-height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -3px 4px 11.2px 0 rgba(0, 0, 0, 0.06);
+    transition: ease 0.3s;
+    cursor: pointer;
+    direction: rtl;
+}
+
+    .service-slider-item-purple:hover, .service-slider-item-cyan:hover, .service-slider-item-white:hover{
+        transform:scale(1.1);
+    }
+
+.owl-carousel {
+    .service-slider-item-purple:hover, .service-slider-item-cyan:hover, .service-slider-item-white:hover
+
+{
+    transform: scale(1.03);
+}
+}
+
+.more-services {
+    color: #fff;
+    font-family: 'Neue Frutiger World bold';
+}
+
+.arrow-link {
+    display: flex;
+    width: 37px;
+    height: 37px;
+    padding: 0;
+    align-items: center;
+    gap: 10px;
+    border-radius: 18.5px;
+    background: #98DEF8;
+    justify-content: center;
+    border: none;
+    transition: ease 0.3s;
+}
+
+    .arrow-link:hover {
+        transform: scale(1.1);
+        background: #71d9ff;
+    }
+
+.owl-carousel .owl-stage-outer {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.arrow-next {
+    background-image: url('../img/arrow-prev.svg');
+    width: 32px;
+    height: 32px;
+}
+
+.arrow-prev {
+    background-image: url('../img/arrow-next.svg');
+    width: 32px;
+    height: 32px;
+}
+
+.owl-nav {
+    position: absolute;
+    top: 0;
+    margin-top: -70px !important;
+    left: 0;
+}
+
+.owl-theme .owl-nav [class*=owl-]:hover {
+    background: #98def8;
+    transition:all ease-in-out 0.3s;
+
+}
+
+.owl-dots{
+    display:none;
+}
+
+
+.item.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+}
+
+.item.logo img {
+    width: 130px;
+}
+
+
+section{
+    margin:50px 0;
+}
+
+
+
+.blog-container {
+    border-radius: 20px;
+    height: 435px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow:hidden;
+    direction:rtl;
+}
+
+    .blog-container img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+        transition:ease 0.5s;
+        z-index:1;
+        position:absolute;
+    }
+
+    .blog-container:hover img {
+        transform:scale(1.1);
+    }
+
+.blog-content {
+    background: linear-gradient(-180deg, rgba(217, 217, 217, 0.00) 0%, #320C97 70%);
+    padding: 64px 16px 24px 16px;
+    z-index: 2;
+    margin-top: auto;
+    transition: ease 0.5s;
+}
+
+.blog-date {
+    color: #FFF;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom:8px;
+}
+
+.blog-title {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.blog-description {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.blog-container:hover .blog-content {
+    padding: 32px 16px;
+}
+
+.discover {
+    background-color: #320C97;
+}
+
+.white{
+    color:white;
+}
+
+.bold {
+    font-family: 'Neue Frutiger World bold';
+}
+
+.discover-img {
+    position: absolute;
+    left: 0;
+    width: 570px;
+    margin-top: -110px;
+    padding: 0;
+    max-width:40%;
+}
+
+
+
+.moving-text {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 0;
+    height: 220px;
+}
+
+.scroll-text {
+    display: flex;
+    width: 100%;
+    box-shadow: 0 8px 16px rgba(#000000, 0.5);
+    div
+
+{
+    color: #320C97;
+    font-size: 180px;
+    font-style: normal;
+    font-family: 'Neue Frutiger World bold';
+    line-height: normal;
+    text-transform: uppercase;
+    white-space: nowrap;
+    animation: animate 40s -40s linear infinite;
+    will-change: transform;
+    &:nth-child(2)
+
+{
+    animation: animate2 40s -20s linear infinite;
+}
+
+}
+
+
+
+}
+
+    @media(max-width:991px){
+        .scroll-text div {
+            font-size: 90px;
+        }
+        .moving-text {
+            height: 110px;
+        }
+    }
+
+
+@keyframes animate {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes animate2 {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+
+
+.bar {
+    width: 100%;
+    color: #320C97;
+    font-size: 180px;
+    font-style: normal;
+    font-family: 'Neue Frutiger World bold';
+    line-height: normal;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 160px;
+    display:flex;
+    gap:100px;
+}
+
+
+
+.bar_content {
+    display: block; /* Important to give the content a width */
+
+    width: 100%;
+    transform: translateX(-100%); /* Animation start out of the screen */
+    /* Add the animation */
+    animation: move 20s linear infinite /* infinite make reapeat the animation indefinitely */;
+}
+
+/* Create the animation */
+@keyframes move {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@media(max-width:991px) {
+    .bar {
+        font-size: 90px;
+        height: 80px;
+    }
+
+    .bar_content {
+        display: block; /* Important to give the content a width */
+
+        width: 100%;
+        transform: translateX(-100%); /* Animation start out of the screen */
+        /* Add the animation */
+        animation: move 10s linear infinite /* infinite make reapeat the animation indefinitely */;
+    }
+}
+
+
+
+
+.footer-link{
+    text-decoration:none;
+    color:black;
+}
+
+.navbar-toggler {
+    padding: 8px;
+    border: 1px solid #320c97;
+}
+
+@media(max-width:991px){
+    .navbar-brand img {
+        max-width: 230px;
+    }
+
+    .navbar-nav{
+        margin-top:24px;
+    }
+
+    .about-container .text-center{
+        text-align:start !important
+    }
+
+    .title {
+        font-size: 32px;
+
+    }
+}
+
+.navbar-toggler-icon {
+    background-image: none;
+}
+
+.about-section{
+    padding:32px
+}
+
+
+    .about-section p {
+        line-height: 30px;
+    }
+
+
+.subtitle {
+    color: #320C97;
+    font-family: 'Neue Frutiger World bold';
+    font-size: 16px;
+    font-style: normal;
+}
+
+.breadcrumb-container{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    margin-bottom:24px;
+}
+
+    .breadcrumb-container a {
+        color: #AAAAAD;
+        text-decoration:none;
+    }
+
+    .breadcrumb-container p {
+        color: #320C97;
+        margin-bottom:0;
+    }
+
+.discover.home{
+    margin-top:150px;
+}
+
+@media(max-width:991px) {
+    .discover img{
+            display:none;
+        }
+
+    .discover.home {
+        margin-top: 50px;
+    }
+    }
+
+
+
+
+
+#myBtn {
+   opacity:0;
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 99;
+    font-size: 18px;
+    border: 2px solid #fff;
+    outline: none;
+    background-color: #320C97;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    transition: ease 0.3s;
+}
+
+    #myBtn:hover {
+        background-color: #4FC3F7;
+    }
+
+.foot-m-links .flex-grow-1 {
+    width:50%
+}
+
+.footer{
+    margin-top:150px;
+}
+
+@media(max-width:991px){
+    .footer {
+        margin-top: 60px;
+    }
+}
+
+
+ [data-entrance] {
+            opacity:0;
+        }
+
+ .hero-text-mobile{
+     display:flex;
+     flex-direction:column;
+     position:relative;
+     height:100%
+ }
+
+.man-mobile {
+    display: none;
+}
+
+ @media(max-width:991px){
+    .hero-text-mobile {
+        display: unset;
+        flex-direction: unset;
+        position: relative;
+        height: 100%
+    }
+
+    
+ }
+
+
+@media (max-width: 991px) {
+    .man-mobile {
+        display: block;
+        position: absolute;
+        left: 30px;
+        width: 25%;
+        bottom: 0px;
+    }
+}
+
+@media (max-width: 767px) {
+    .man-mobile {
+        display: block;
+        position: absolute;
+        left: 10px;
+        width: 35%;
+        bottom: 0;
+    }
+}
+
+@media (max-width: 430px) {
+    .man-mobile {
+        display: block;
+        position: absolute;
+        left: 10px;
+        width: 40%;
+        bottom: 0;
+        transform: scaleX(-1) !important;
+    }
+}
+
+
+.blog-details-image{
+    width:100%;
+    max-height:470px;
+    object-fit:cover;
+    border-radius:24px;
+}
+
+
+.form-control {
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+.form-floating > label{
+    color:#000;
+}
+
+
+@media(min-width:1600px){
+    .hero-text h1 {
+        font-size: 57px;
+    }
+}
+
+@media(min-width:1920px) {
+    .hero-text h1 {
+        font-size: 72px;
+        padding-right: 30px;
+    }
+}
+
+.red{
+    color:red;
+}
+
+
+
+.hero-image.active, .discover-img {
+    transform: scaleX(-1);
+}
+
+.owl-carousel {
+    direction: ltr;
+}
+
+
+.arrow-link svg {
+    transform: scaleX(-1);
+}
+
+
