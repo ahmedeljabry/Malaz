@@ -89,6 +89,10 @@ class ManageSiteSettings extends Page implements HasForms
                         TextInput::make('address2_ar')->label('العنوان 2 (AR)')->maxLength(255),
                         TextInput::make('address2_en')->label('Address 2 (EN)')->maxLength(255),
                     ]),
+                    Fieldset::make('الخريطة (Google Maps Embed)')->schema([
+                        Textarea::make('map_iframe_1')->label('تضمين الخريطة 1 (iframe)')->rows(4)->columnSpanFull(),
+                        Textarea::make('map_iframe_2')->label('تضمين الخريطة 2 (iframe)')->rows(4)->columnSpanFull(),
+                    ])->columns(1),
                 ]),
 
                 Tab::make('التواصل')->schema([
@@ -206,6 +210,10 @@ class ManageSiteSettings extends Page implements HasForms
         $this->saveKeyTrans('address1', $state['address1_en'] ?? '', $state['address1_ar'] ?? '');
         $this->saveKeyTrans('address2', $state['address2_en'] ?? '', $state['address2_ar'] ?? '');
 
+        // Maps
+        $this->saveKey('map_iframe_1', $state['map_iframe_1'] ?? '');
+        $this->saveKey('map_iframe_2', $state['map_iframe_2'] ?? '');
+
         // Contact
         $this->saveKey('phone', $state['phone'] ?? '');
         $this->saveKey('email', $state['email'] ?? '');
@@ -304,6 +312,10 @@ class ManageSiteSettings extends Page implements HasForms
             'address1_en' => $this->getSettingValue('address1'),
             'address2_ar' => $this->getSettingValue('address2', ar: true),
             'address2_en' => $this->getSettingValue('address2'),
+
+            // Maps
+            'map_iframe_1' => $this->getSettingValue('map_iframe_1'),
+            'map_iframe_2' => $this->getSettingValue('map_iframe_2'),
 
             // Contact
             'phone' => $this->getSettingValue('phone'),

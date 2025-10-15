@@ -15,9 +15,9 @@ class Partner extends Model
         'is_active' => 'boolean',
     ];
 
-    public function scopeActive()
+    public function scopeActive($query)
     {
-        return $this->where('is_active', true);
+        return $query->where('is_active', true);
     }
 
     public function getImageAttribute(): ?string
@@ -29,4 +29,3 @@ class Partner extends Model
     }
 
 }
-

@@ -11,16 +11,15 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
-use Filament\Tables\Filters\Filter;
-use Filament\Tables\Filters\TernaryFilter;
 use Illuminate\Database\Eloquent\Builder;
 
 class PartnerResource extends Resource
@@ -42,8 +41,7 @@ class PartnerResource extends Resource
         return $schema->schema([
             Section::make('بيانات الشريك')->schema([
                 Grid::make(2)->schema([
-                    TextInput::make('name_ar')->label('الاسم (AR)')->required()->maxLength(255),
-                    TextInput::make('name_en')->label('الاسم (EN)')->required()->maxLength(255),
+                    TextInput::make('name')->label('الاسم')->required()->maxLength(255),
                 ]),
                 FileUpload::make('logo_path')
                     ->label('الشعار')
@@ -53,6 +51,7 @@ class PartnerResource extends Resource
                     ->visibility('public')
                     ->preserveFilenames()
                     ->moveFiles(),
+                Toggle::make('is_active')->label('مفعل')->default(true),
                 TextInput::make('sort_order')->label('الترتيب')->numeric()->default(1),
             ])->columnSpanFull(),
         ]);
@@ -63,8 +62,8 @@ class PartnerResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('logo_path')->label('الشعار')->disk('public')->square(),
-                TextColumn::make('name_ar')->label('الاسم (AR)')->searchable()->sortable(),
-                TextColumn::make('name_en')->label('Name (EN)')->searchable()->sortable(),
+                TextColumn::make('name')->label('الاسم')->searchable()->sortable(),
+                ToggleColumn::make('is_active')->label('نشط')->sortable(),
                 TextColumn::make('sort_order')->label('الترتيب')->numeric()->sortable(),
                 TextColumn::make('updated_at')->label('آخر تعديل')->since()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -86,6 +85,14 @@ class PartnerResource extends Resource
                     ->query(fn ($query, array $data) => $query
                         ->when($data['min'] ?? null, fn ($q, $v) => $q->where('sort_order', '>=', (int) $v))
                         ->when($data['max'] ?? null, fn ($q, $v) => $q->where('sort_order', '<=', (int) $v))
+                    ),
+                \Filament\Tables\Filters\TernaryFilter::make('is_active')
+                    ->label('الحالة')
+                    ->trueLabel('نشط')
+                    ->falseLabel('غير نشط')
+                    ->queries(
+                        true: fn ($q) => $q->where('is_active', true),
+                        false: fn ($q) => $q->where('is_active', false),
                     ),
             ])
             ->modifyQueryUsing(fn (Builder $query) => $query->orderBy('sort_order')->orderByDesc('id'))
@@ -112,5 +119,3 @@ class PartnerResource extends Resource
         ];
     }
 }
-
-

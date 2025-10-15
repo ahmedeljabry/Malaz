@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ContactMessage;
 use App\Models\User;
 use App\Filament\Resources\ContactMessageResource;
-use Filament\Notifications\Actions\Action as NotificationAction;
-use Filament\Notifications\Notification as FilamentNotification;
+use App\Notifications\NewContactMessageNotification;
+use Illuminate\Support\Facades\Notification as NotificationFacade;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -31,16 +31,7 @@ class ContactController extends Controller
         $message = ContactMessage::create($validated + ['status' => 'new']);
 
         try {
-            $url = ContactMessageResource::getUrl('view', ['record' => $message]);
-
-            FilamentNotification::make()
-                ->title('رسالة تواصل جديدة')
-                ->body("من: {$message->name} ({$message->email})")
-                ->icon('heroicon-o-inbox')
-                ->actions([
-                    NotificationAction::make('عرض')->url($url)->button(),
-                ])
-                ->sendToDatabase(User::query()->get());
+            NotificationFacade::send(User::query()->get(), new NewContactMessageNotification($message));
         } catch (\Throwable $e) {
             throw $e;
         }
