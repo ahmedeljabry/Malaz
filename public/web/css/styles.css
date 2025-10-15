@@ -744,7 +744,6 @@ section{
 
 .navbar-toggler {
     padding: 8px;
-    border: 1px solid #320c97;
 }
 
 @media(max-width:991px){
@@ -823,7 +822,6 @@ section{
 
 
 #myBtn {
-    display: none;
     position: fixed;
     bottom: 24px;
     right: 24px;
@@ -881,7 +879,7 @@ section{
         height: 100%
     }
 
-    
+
  }
 
 
