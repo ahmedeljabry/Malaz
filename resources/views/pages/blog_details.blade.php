@@ -6,11 +6,11 @@
 
             <img src="{{ $post->image }}" class="blog-details-image" data-entrance="fade" alt="{{ $post->title }}" />
 
-            <h3 class="title mb-3 mt-5" data-entrance="from-left">
+            <h3 class="title mb-3 mt-5" data-entrance="from-top">
                 {{ $post->title }}
             </h3>
-            
-            <p style="font-size:14px;" data-entrance="from-bottom"> 
+
+            <p style="font-size:14px;" data-entrance="from-top">
                 {{ \Illuminate\Support\Str::replace(
                     ['am','pm'],
                     ['a.m','p.m'],
@@ -18,7 +18,7 @@
                 ) }}
             </p>
 
-            <div class=" mb-5 mt-4" data-entrance="from-right">
+            <div class=" mb-5 mt-4" data-entrance="from-top">
                 {!! $post->body !!}
             </div>
 
@@ -33,7 +33,7 @@
                     'snapchat' => "https://www.snapchat.com/scan?attachmentUrl={$currentUrl}",
                 ];
             @endphp
-            <div class="d-flex gap-4 align-items-center pt-5" data-entrance="from-bottom">
+            <div class="d-flex gap-4 align-items-center pt-5" data-entrance="from-top">
                 <h5 class="bold mb-0">{{ __('buttons.share') }}</h5>
                 <div class="d-flex gap-2">
                     <a href="{{ $share['linkedin'] }}" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="LinkedIn">
@@ -55,6 +55,6 @@
             </div>
         </div>
     </section>
-    
+
     <x-blocks.discover />
 @endsection

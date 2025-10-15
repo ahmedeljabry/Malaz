@@ -1,4 +1,4 @@
-   <section class="pt-5 footer" data-entrance="from-bottom">
+   <section class="pt-5 footer" data-entrance="from-top">
         <div class="container">
             <dis class="row">
                 <div class="col-xl-3 mb-3">

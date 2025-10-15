@@ -1,4 +1,4 @@
-   <section class="py-5" data-entrance="from-right">
+   <section class="py-5" data-entrance="from-top">
         <div class="container">
             <h3 class="title mb-4">
                 {{ __('home.parteners') }}

@@ -19,7 +19,7 @@
                     </div>
                 </div>
 
-                <img src="{{ asset('web/img/man.png') }}" class="man-mobile"  data-entrance="from-fade"/>
+                <img src="{{ asset('web/img/man.png') }}" class="man-mobile"  data-entrance="from-top"/>
             </div>
             <div class=" col-xl-6 d-none d-lg-block ">
                 <div class="hero-image">

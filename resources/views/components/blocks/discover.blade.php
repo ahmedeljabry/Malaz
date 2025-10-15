@@ -1,4 +1,4 @@
-    <section class="discover home" data-entrance="from-right">
+    <section class="discover home" data-entrance="from-top">
         <div class="container py-5">
             <div class="row">
                 <div class="col-sm-6">

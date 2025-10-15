@@ -1,4 +1,4 @@
-<section class="py-5" data-entrance="from-left">
+<section class="py-5" data-entrance="from-top">
             <div class="container">
                 <h3 class="title mb-4">
                     {{ __('nav.blog') }}

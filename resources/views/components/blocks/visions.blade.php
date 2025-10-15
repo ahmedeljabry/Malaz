@@ -1,6 +1,6 @@
     <section class="pt-5">
         <div class="container about-container">
-            <h3 class="title mb-5" data-entrance="from-left">
+            <h3 class="title mb-5" data-entrance="from-top">
                 {{ __('home.vision') }}
             </h3>
             @php
@@ -8,9 +8,11 @@
                 $locale = app()->getLocale() === 'ar' ? 'ar' : 'en';
                 $v1 = $visions->get(0);
                 $v2 = $visions->get(1);
+                $message = $visions->get(2);
+                $messageItems = $visions->slice(3);
             @endphp
             <div class="row">
-                <div class="col-xl-6 mb-4" data-entrance="from-left">
+                <div class="col-xl-6 mb-4" data-entrance="from-top">
                     <div class="d-xl-flex gap-4 about-section">
                         <div style="min-width: max-content;" class="text-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="88" viewBox="0 0 100 88" fill="none">
@@ -70,11 +72,11 @@
 
                             <h5 class="mt-3 bold">{{ $v1?->{"head_title_{$locale}"} ?? __('home.vision') }}</h5>
                         </div>
-                        <p>{{ $v1?->{"body_{$locale}"} }}</p>
+                        <p>{!! $v1?->{"body_{$locale}"} !!}</p>
                     </div>
                 </div>
 
-                <div class="col-xl-6 mb-4" data-entrance="from-right">
+                <div class="col-xl-6 mb-4" data-entrance="from-top">
                     <div class="d-xl-flex gap-4 about-section">
                         <div style="min-width: max-content;" class="text-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="87" height="87" viewBox="0 0 87 87" fill="none">
@@ -109,95 +111,89 @@
 
                             <h5 class="mt-3 bold">{{ $v2?->{"head_title_{$locale}"} ?? ' ' }}</h5>
                         </div>
-                        <p>{{ $v2?->{"body_{$locale}"} }}</p>
+                        <p>{!! $v2?->{"body_{$locale}"} !!}</p>
                     </div>
                 </div>
 
-                <div class="col-xl-12 mb-4" data-entrance="from-bottom">
-                    <div class="d-xl-flex gap-4 about-section">
-                        <div style="min-width: max-content;" class="text-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="89" height="89" viewBox="0 0 89 89" fill="none">
-                                <g clip-path="url(#clip0_190_247)">
-                                    <path d="M29.3945 14.2176C29.4269 14.1206 29.4377 14.0343 29.4701 13.9373H19.2091C16.6736 13.9373 14.2891 15.1235 12.7462 17.1294L2.13999 31.052C1.36313 32.0657 0.845234 33.252 0.618652 34.5137H23.6545L29.3945 14.2284V14.2176Z" fill="url(#paint0_linear_190_247)" />
-                                    <path d="M23.6653 37.652H0.661865C0.920816 38.903 1.47109 40.0677 2.28031 41.0598L37.8213 85.0598L37.6486 84.4775L23.6545 37.652H23.6653Z" fill="url(#paint1_linear_190_247)" />
-                                    <path d="M51.3406 84.4559C49.7977 87.3784 87.0326 40.3481 86.7089 41.0598C87.5182 40.0677 88.0684 38.903 88.3489 37.652H65.3347L51.3406 84.4667V84.4559Z" fill="url(#paint2_linear_190_247)" />
-                                    <path d="M76.2538 17.1294C74.7109 15.1235 72.3264 13.948 69.7908 13.9373H59.5083C59.5515 14.0343 59.5838 14.1314 59.6162 14.2392L65.3347 34.5137H88.3705C88.1439 33.252 87.626 32.0765 86.8492 31.052L76.2538 17.1294Z" fill="url(#paint3_linear_190_247)" />
-                                    <path d="M26.9561 37.652L40.6804 83.5716L41.7918 87.2814C42.137 88.4677 43.4641 88.4892 44.4999 88.5108C45.525 88.4892 46.8521 88.4784 47.2081 87.2814L48.3195 83.5716L62.0438 37.652H26.9561Z" fill="url(#paint4_linear_190_247)" />
-                                    <path d="M62.0547 34.5029C61.731 33.3382 56.757 15.7059 56.5844 15.0804C56.401 14.401 55.7752 13.9372 55.0739 13.9372H33.9154C32.3294 13.8725 32.2107 15.997 31.8438 17.0755L26.9346 34.5029H62.0547Z" fill="url(#paint5_linear_190_247)" />
-                                    <path d="M21.2268 75.9578C17.0836 75.1274 13.8467 71.8921 13.0159 67.7509C12.8433 66.899 12.0125 66.349 11.1601 66.5215C10.5451 66.6509 10.0595 67.1254 9.93006 67.7509C9.09926 71.8921 5.86238 75.1274 1.71917 75.9578C0.866794 76.1519 0.327313 76.9931 0.521526 77.8451C0.651002 78.4382 1.12574 78.9127 1.71917 79.0421C5.86238 79.8725 9.09926 83.1078 9.93006 87.249C10.1027 88.1009 10.9335 88.6509 11.7859 88.4784C12.4009 88.349 12.8864 87.8745 13.0159 87.249C13.8467 83.1078 17.0836 79.8725 21.2268 79.0421C22.0792 78.848 22.6186 78.0068 22.4244 77.1549C22.2949 76.5617 21.8202 76.0872 21.2268 75.9578Z" fill="url(#paint6_linear_190_247)" />
-                                    <path d="M74.0527 9.8931C76.6098 10.4 78.6059 12.3951 79.113 14.9509C79.2856 15.8029 80.1164 16.3529 80.9688 16.1804C81.5838 16.0509 82.0693 15.5764 82.1988 14.9509C82.7059 12.3951 84.702 10.4 87.2591 9.8931C88.1115 9.69898 88.651 8.8578 88.4568 8.00584C88.3273 7.4127 87.8526 6.9382 87.2591 6.80878C84.702 6.30192 82.7059 4.30682 82.1988 1.75094C82.0262 0.898979 81.1954 0.34898 80.343 0.521529C79.728 0.65094 79.2425 1.12545 79.113 1.75094C78.6059 4.30682 76.6098 6.30192 74.0527 6.80878C73.2003 7.0029 72.6608 7.84408 72.855 8.69604C72.9845 9.28918 73.4592 9.76369 74.0527 9.8931Z" fill="url(#paint7_linear_190_247)" />
-                                </g>
-                                <defs>
-                                    <linearGradient id="paint0_linear_190_247" x1="0.618652" y1="24.2147" x2="29.4701" y2="24.2147" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#62CCF4" />
-                                        <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
-                                    </linearGradient>
-                                    <linearGradient id="paint1_linear_190_247" x1="0.661865" y1="61.3559" x2="37.832" y2="61.3559" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#62CCF4" />
-                                        <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
-                                    </linearGradient>
-                                    <linearGradient id="paint2_linear_190_247" x1="89.6761" y1="61.1186" x2="57.0375" y2="61.1186" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#62CCF4" />
-                                        <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
-                                    </linearGradient>
-                                    <linearGradient id="paint3_linear_190_247" x1="89.676" y1="24.2147" x2="57.0375" y2="24.2147" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#62CCF4" />
-                                        <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
-                                    </linearGradient>
-                                    <linearGradient id="paint4_linear_190_247" x1="44.4999" y1="12.5245" x2="44.4999" y2="86.0196" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#62CCF4" />
-                                        <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
-                                    </linearGradient>
-                                    <linearGradient id="paint5_linear_190_247" x1="44.5" y1="12.5245" x2="44.5" y2="86.0196" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#62CCF4" />
-                                        <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
-                                    </linearGradient>
-                                    <linearGradient id="paint6_linear_190_247" x1="0.499947" y1="77.5" x2="22.4676" y2="77.5" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#62CCF4" />
-                                        <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
-                                    </linearGradient>
-                                    <linearGradient id="paint7_linear_190_247" x1="72.8119" y1="8.36172" x2="88.4999" y2="8.36172" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#62CCF4" />
-                                        <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
-                                    </linearGradient>
-                                    <clipPath id="clip0_190_247">
-                                        <rect width="88" height="88" fill="white" transform="translate(0.5 0.5)" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
+                @if($visions->count() > 2)
+                    <div class="col-xl-12 mb-4" data-entrance="from-top">
+                        <div class="d-xl-flex gap-4 about-section">
+                            <div style="min-width: max-content;" class="text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="89" height="89" viewBox="0 0 89 89" fill="none">
+                                    <g clip-path="url(#clip0_190_247)">
+                                        <path d="M29.3945 14.2176C29.4269 14.1206 29.4377 14.0343 29.4701 13.9373H19.2091C16.6736 13.9373 14.2891 15.1235 12.7462 17.1294L2.13999 31.052C1.36313 32.0657 0.845234 33.252 0.618652 34.5137H23.6545L29.3945 14.2284V14.2176Z" fill="url(#paint0_linear_190_247)" />
+                                        <path d="M23.6653 37.652H0.661865C0.920816 38.903 1.47109 40.0677 2.28031 41.0598L37.8213 85.0598L37.6486 84.4775L23.6545 37.652H23.6653Z" fill="url(#paint1_linear_190_247)" />
+                                        <path d="M51.3406 84.4559C49.7977 87.3784 87.0326 40.3481 86.7089 41.0598C87.5182 40.0677 88.0684 38.903 88.3489 37.652H65.3347L51.3406 84.4667V84.4559Z" fill="url(#paint2_linear_190_247)" />
+                                        <path d="M76.2538 17.1294C74.7109 15.1235 72.3264 13.948 69.7908 13.9373H59.5083C59.5515 14.0343 59.5838 14.1314 59.6162 14.2392L65.3347 34.5137H88.3705C88.1439 33.252 87.626 32.0765 86.8492 31.052L76.2538 17.1294Z" fill="url(#paint3_linear_190_247)" />
+                                        <path d="M26.9561 37.652L40.6804 83.5716L41.7918 87.2814C42.137 88.4677 43.4641 88.4892 44.4999 88.5108C45.525 88.4892 46.8521 88.4784 47.2081 87.2814L48.3195 83.5716L62.0438 37.652H26.9561Z" fill="url(#paint4_linear_190_247)" />
+                                        <path d="M62.0547 34.5029C61.731 33.3382 56.757 15.7059 56.5844 15.0804C56.401 14.401 55.7752 13.9372 55.0739 13.9372H33.9154C32.3294 13.8725 32.2107 15.997 31.8438 17.0755L26.9346 34.5029H62.0547Z" fill="url(#paint5_linear_190_247)" />
+                                        <path d="M21.2268 75.9578C17.0836 75.1274 13.8467 71.8921 13.0159 67.7509C12.8433 66.899 12.0125 66.349 11.1601 66.5215C10.5451 66.6509 10.0595 67.1254 9.93006 67.7509C9.09926 71.8921 5.86238 75.1274 1.71917 75.9578C0.866794 76.1519 0.327313 76.9931 0.521526 77.8451C0.651002 78.4382 1.12574 78.9127 1.71917 79.0421C5.86238 79.8725 9.09926 83.1078 9.93006 87.249C10.1027 88.1009 10.9335 88.6509 11.7859 88.4784C12.4009 88.349 12.8864 87.8745 13.0159 87.249C13.8467 83.1078 17.0836 79.8725 21.2268 79.0421C22.0792 78.848 22.6186 78.0068 22.4244 77.1549C22.2949 76.5617 21.8202 76.0872 21.2268 75.9578Z" fill="url(#paint6_linear_190_247)" />
+                                        <path d="M74.0527 9.8931C76.6098 10.4 78.6059 12.3951 79.113 14.9509C79.2856 15.8029 80.1164 16.3529 80.9688 16.1804C81.5838 16.0509 82.0693 15.5764 82.1988 14.9509C82.7059 12.3951 84.702 10.4 87.2591 9.8931C88.1115 9.69898 88.651 8.8578 88.4568 8.00584C88.3273 7.4127 87.8526 6.9382 87.2591 6.80878C84.702 6.30192 82.7059 4.30682 82.1988 1.75094C82.0262 0.898979 81.1954 0.34898 80.343 0.521529C79.728 0.65094 79.2425 1.12545 79.113 1.75094C78.6059 4.30682 76.6098 6.30192 74.0527 6.80878C73.2003 7.0029 72.6608 7.84408 72.855 8.69604C72.9845 9.28918 73.4592 9.76369 74.0527 9.8931Z" fill="url(#paint7_linear_190_247)" />
+                                    </g>
+                                    <defs>
+                                        <linearGradient id="paint0_linear_190_247" x1="0.618652" y1="24.2147" x2="29.4701" y2="24.2147" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#62CCF4" />
+                                            <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint1_linear_190_247" x1="0.661865" y1="61.3559" x2="37.832" y2="61.3559" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#62CCF4" />
+                                            <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint2_linear_190_247" x1="89.6761" y1="61.1186" x2="57.0375" y2="61.1186" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#62CCF4" />
+                                            <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint3_linear_190_247" x1="89.676" y1="24.2147" x2="57.0375" y2="24.2147" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#62CCF4" />
+                                            <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint4_linear_190_247" x1="44.4999" y1="12.5245" x2="44.4999" y2="86.0196" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#62CCF4" />
+                                            <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint5_linear_190_247" x1="44.5" y1="12.5245" x2="44.5" y2="86.0196" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#62CCF4" />
+                                            <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint6_linear_190_247" x1="0.499947" y1="77.5" x2="22.4676" y2="77.5" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#62CCF4" />
+                                            <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint7_linear_190_247" x1="72.8119" y1="8.36172" x2="88.4999" y2="8.36172" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#62CCF4" />
+                                            <stop offset="1" stop-color="#62CCF4" stop-opacity="0" />
+                                        </linearGradient>
+                                        <clipPath id="clip0_190_247">
+                                            <rect width="88" height="88" fill="white" transform="translate(0.5 0.5)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
 
-                            <h5 class="mt-3 bold">Our Message</h5>
+                                <h5 class="mt-3 bold">{{ $message?->{"head_title_{$locale}"} }}</h5>
+                            </div>
+
+                            <div class="row">
+                                @forelse($messageItems as $item)
+                                    <div class="col-xl-6 mt-3">
+                                        <h5 class="subtitle">{{ $item?->{"title_{$locale}"} ?? $item?->{"head_title_{$locale}"} }}</h5>
+                                        <p>{!! $item?->{"body_{$locale}"} !!}</p>
+                                    </div>
+                                @empty
+                                    @if($message)
+                                        <div class="col-12 mt-3">
+                                            <p>{!! $message?->{"body_{$locale}"} !!}</p>
+                                        </div>
+                                    @else
+                                        <div class="col-12">
+                                            <p class="text-center">{{ __('home.no_data') }}</p>
+                                        </div>
+                                    @endif
+                                @endforelse
+                            </div>
+
                         </div>
-
-                        <div class="row">
-                            <div class="col-xl-6 mt-3">
-                                <h5 class="subtitle">Excellence</h5>
-                                <p>
-                                    We strive to achieve the highest standards of quality in everything we offer.
-                                </p>
-                            </div>
-                            <div class="col-xl-6 mt-3">
-                                <h5 class="subtitle">Innovation</h5>
-                                <p>
-                                    We keep up with the latest technological advancements to provide innovative solutions.
-                                </p>
-                            </div>
-                            <div class="col-xl-6 mt-3">
-                                <h5 class="subtitle">Transparency</h5>
-                                <p>
-                                    We are committed to honesty and clarity in all our dealings.
-                                </p>
-                            </div>
-                            <div class="col-xl-6 mt-3">
-                                <h5 class="subtitle">Customer Satisfaction</h5>
-                                <p>
-                                    We always place our clients’ needs at the forefront.
-                                </p>
-                            </div>
-                        </div>
-
                     </div>
-                </div>
+                @endif
 
             </div>
         </div>

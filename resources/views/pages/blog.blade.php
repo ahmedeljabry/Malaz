@@ -3,10 +3,10 @@
 @section('content')
     <section class="py-5">
         <div class="container">
-            <h3 class="title mb-4" data-entrance="from-left">
+            <h3 class="title mb-4" data-entrance="from-top">
                 {{ __('nav.blog') }}
             </h3>
-            <div class="row" data-entrance="from-right">
+            <div class="row" data-entrance="from-top">
                 @forelse (\App\Models\Post::published()->get() as $post)
                     <div class="col-xl-3 mb-4">
                         <div class="blog-container">
