@@ -2,7 +2,7 @@
         <div class="container">
             <dis class="row">
                 <div class="col-xl-3 mb-3">
-                    <img src="{{ asset(\App\Models\Setting::value('logo_footer')) }}" class="w-100" style="max-width:280px;" />
+                    <img src="{{ asset('storage/' . \App\Models\Setting::value('logo_footer')) }}" class="w-100" style="max-width:280px;" />
                 </div>
                 <div class="col-xl-3">
                     <p>{{ \App\Models\Setting::value('address1') }}</p>
