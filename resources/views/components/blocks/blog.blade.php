@@ -7,7 +7,7 @@
                     @forelse (\App\Models\Post::published()->get() as $post)
                         <div class="item ">
                             <div class="blog-container">
-                                <img src="{{ $image }}" alt="{{ $post->title }}" />
+                                <img src="{{ $post->image }}" alt="{{ $post->title }}" />
                                 <div class="blog-content">
                                     <div class="d-flex justify-content-between gap-4">
                                         <div>
