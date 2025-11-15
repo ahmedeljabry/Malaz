@@ -12,6 +12,11 @@ use Filament\Schemas\Components\Select;
 use Filament\Schemas\Components\DateTimePicker;
 use Filament\Schemas\Components\Placeholder;
 use Filament\Resources\Resource;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -131,10 +136,10 @@ class UserResource extends Resource
                     ->preload(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
-                    ->before(function (Tables\Actions\DeleteAction $action, User $record) {
+                ViewAction::make(),
+                EditAction::make(),
+                DeleteAction::make()
+                    ->before(function (DeleteAction $action, User $record) {
                         // Prevent self-deletion
                         if ($record->id === auth()->id()) {
                             $action->cancel();
@@ -143,9 +148,9 @@ class UserResource extends Resource
                     }),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make()
-                        ->before(function (Tables\Actions\DeleteBulkAction $action, $records) {
+                BulkActionGroup::make([
+                    DeleteBulkAction::make()
+                        ->before(function (DeleteBulkAction $action, $records) {
                             // Prevent self-deletion in bulk actions
                             foreach ($records as $record) {
                                 if ($record->id === auth()->id()) {
