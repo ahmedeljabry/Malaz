@@ -27,7 +27,7 @@ class UserResource extends Resource
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'إدارة المستخدمين';
+    protected static string|\UnitEnum|null $navigationGroup = 'Filament Shield';
 
     protected static ?string $navigationLabel = 'المستخدمون';
 
@@ -178,5 +178,15 @@ class UserResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->with('roles');
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return true;
+    }
+
+    public static function getNavigationSort(): ?int
+    {
+        return 1; // Show Users before Roles
     }
 }
