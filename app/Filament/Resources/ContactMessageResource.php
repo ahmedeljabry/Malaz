@@ -22,6 +22,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class ContactMessageResource extends Resource
 {
@@ -61,6 +62,38 @@ class ContactMessageResource extends Resource
                             'resolved' => 'تم الحل',
                         ])->required(),
                 ]),
+
+            Section::make('كشف الرسائل المزعجة')
+                ->schema([
+                    \Filament\Schemas\Components\Toggle::make('is_spam')
+                        ->label('رسالة مزعجة')
+                        ->helperText('حدد إذا كانت هذه الرسالة مزعجة'),
+
+                    \Filament\Schemas\Components\TextInput::make('spam_score')
+                        ->label('درجة الإزعاج')
+                        ->numeric()
+                        ->min(0)
+                        ->max(1)
+                        ->step(0.01)
+                        ->disabled()
+                        ->helperText('الدرجة المحسوبة تلقائياً'),
+
+                    \Filament\Schemas\Components\Textarea::make('spam_reasons_display')
+                        ->label('أسباب الإزعاج')
+                        ->disabled()
+                        ->rows(3)
+                        ->formatStateUsing(fn ($record) => $record ? implode("\n", $record->spam_reasons ?? []) : '')
+                        ->helperText('الأسباب التي أدت لتصنيف الرسالة كمزعجة'),
+
+                    \Filament\Schemas\Components\TextInput::make('ip_address')
+                        ->label('عنوان IP')
+                        ->disabled(),
+
+                    \Filament\Schemas\Components\Textarea::make('user_agent')
+                        ->label('متصفح المستخدم')
+                        ->disabled()
+                        ->rows(2),
+                ]),
         ]);
     }
 
@@ -78,6 +111,18 @@ class ContactMessageResource extends Resource
                     'resolved' => 'success',
                     default => 'gray',
                 }),
+                \Filament\Tables\Columns\IconColumn::make('is_spam')
+                    ->label('مزعجة')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-exclamation-triangle')
+                    ->falseIcon('heroicon-o-check-circle')
+                    ->trueColor('danger')
+                    ->falseColor('success'),
+                TextColumn::make('spam_score')
+                    ->label('درجة الإزعاج')
+                    ->numeric(2)
+                    ->color(fn ($record) => $record->spam_score > 0.6 ? 'danger' : 'success')
+                    ->toggleable(),
                 TextColumn::make('created_at')->label('أُنشئت')->since()->sortable(),
             ])
             ->filters([
@@ -87,6 +132,12 @@ class ContactMessageResource extends Resource
                         'new' => 'جديد',
                         'in_progress' => 'قيد المعالجة',
                         'resolved' => 'تم الحل',
+                    ]),
+                SelectFilter::make('is_spam')
+                    ->label('نوع الرسالة')
+                    ->options([
+                        '0' => 'عادية',
+                        '1' => 'مزعجة',
                     ]),
                 \Filament\Tables\Filters\Filter::make('created_at')
                     ->label('تاريخ الإنشاء')
@@ -107,6 +158,18 @@ class ContactMessageResource extends Resource
             ])
             ->bulkActions([
                 BulkActionGroup::make([
+                    \Filament\Tables\Actions\BulkAction::make('mark_as_spam')
+                        ->label('تحديد كمزعجة')
+                        ->icon('heroicon-o-exclamation-triangle')
+                        ->color('danger')
+                        ->requiresConfirmation()
+                        ->action(fn (Collection $records) => $records->each->update(['is_spam' => true])),
+                    \Filament\Tables\Actions\BulkAction::make('mark_as_not_spam')
+                        ->label('تحديد كعادية')
+                        ->icon('heroicon-o-check-circle')
+                        ->color('success')
+                        ->requiresConfirmation()
+                        ->action(fn (Collection $records) => $records->each->update(['is_spam' => false])),
                     DeleteBulkAction::make(),
                 ]),
             ]);
