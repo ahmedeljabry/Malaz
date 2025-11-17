@@ -55,6 +55,14 @@ class VisionResource extends Resource
                     ->visibility('public')
                     ->preserveFilenames()
                     ->moveFiles(),
+                FileUpload::make('icon_path')
+                    ->label('أيقونة')
+                    ->image()
+                    ->disk('public')
+                    ->directory('vision/icons')
+                    ->visibility('public')
+                    ->preserveFilenames()
+                    ->moveFiles(),
                 Tabs::make('Body')->tabs([
                     Tab::make('العربية')->schema([
                         RichEditor::make('body_ar')
@@ -79,6 +87,7 @@ class VisionResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('image_path')->label('الصورة')->disk('public')->square(),
+                ImageColumn::make('icon_path')->label('الأيقونة')->disk('public')->square(),
                 TextColumn::make('head_title_ar')->label('العنوان الرئيسي (AR)')->searchable(),
                 TextColumn::make('head_title_en')->label('Head Title (EN)')->searchable(),
                 TextColumn::make('sort_order')->label('الترتيب')->numeric()->sortable(),
@@ -128,4 +137,3 @@ class VisionResource extends Resource
         ];
     }
 }
-

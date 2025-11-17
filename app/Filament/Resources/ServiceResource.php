@@ -66,6 +66,15 @@ class ServiceResource extends Resource
                         ->downloadable()
                         ->columnSpanFull(),
 
+                    FileUpload::make('icon_path')
+                        ->label('أيقونة الخدمة')
+                        ->image()
+                        ->disk('public')
+                        ->directory('services/icons')
+                        ->openable()
+                        ->downloadable()
+                        ->columnSpanFull(),
+
                     Toggle::make('is_active')->label('مفعل')->default(true),
                     Toggle::make('show_on_home')->label('بالرئيسية')->default(true),
                 ]),
@@ -146,6 +155,7 @@ class ServiceResource extends Resource
         return $table
             ->columns([
 
+                ImageColumn::make('icon_path')->label('الأيقونة')->disk('public')->square(),
                 TextColumn::make('name_ar')->label('الاسم (ع)')->searchable()->sortable(),
                 TextColumn::make('name_ar')->label('الاسم (EN)')->searchable()->sortable(),
                 TextColumn::make('sort_order')->label('ترتيب')->sortable(),

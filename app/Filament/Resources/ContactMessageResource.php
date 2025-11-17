@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ContactMessageResource\Pages;
 use App\Models\ContactMessage;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\BulkAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -158,13 +159,13 @@ class ContactMessageResource extends Resource
             ])
             ->bulkActions([
                 BulkActionGroup::make([
-                    \Filament\Tables\Actions\BulkAction::make('mark_as_spam')
+                    BulkAction::make('mark_as_spam')
                         ->label('تحديد كمزعجة')
                         ->icon('heroicon-o-exclamation-triangle')
                         ->color('danger')
                         ->requiresConfirmation()
                         ->action(fn (Collection $records) => $records->each->update(['is_spam' => true])),
-                    \Filament\Tables\Actions\BulkAction::make('mark_as_not_spam')
+                    BulkAction::make('mark_as_not_spam')
                         ->label('تحديد كعادية')
                         ->icon('heroicon-o-check-circle')
                         ->color('success')

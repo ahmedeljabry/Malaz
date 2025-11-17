@@ -15,6 +15,7 @@ class Service extends Model
         'sort_order',
         'show_on_home',
         'main_image',
+        'icon_path',
     ];
 
     protected $casts = [
@@ -28,5 +29,13 @@ class Service extends Model
     public function sections() { return $this->hasMany(ServiceSection::class , 'service_id')->orderBy('id'); }
     public function getNameAttribute(): string { return $this->attributes['name_'.(app()->getLocale() === 'ar' ? 'ar' : 'en')] ?? ''; }
 
-}
+    public function getIconUrlAttribute(): ?string
+    {
+        if (! $this->icon_path) {
+            return null;
+        }
 
+        return asset('storage/' . ltrim($this->icon_path, '/'));
+    }
+
+}

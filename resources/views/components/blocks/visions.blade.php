@@ -1,4 +1,4 @@
-    <section class="pt-5">
+﻿    <section class="pt-5">
         <div class="container about-container">
             <h3 class="title mb-5" data-entrance="from-top">
                 {{ __('home.vision') }}
@@ -15,6 +15,9 @@
                 <div class="col-xl-6 mb-4" data-entrance="from-top">
                     <div class="d-xl-flex gap-4 about-section">
                         <div style="min-width: max-content;" class="text-center">
+                            @if($v1?->icon_url)
+                                <img src="{{ $v1->icon_url }}" alt="{{ $v1?->{"head_title_{$locale}"} ?? __('home.vision') }}" width="100" height="88" style="object-fit: contain;" />
+                            @else
                             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="88" viewBox="0 0 100 88" fill="none">
                                 <g clip-path="url(#clip0_190_233)">
                                     <path d="M22.7199 43.89C22.7199 30.99 31.8099 20.18 43.9199 17.53C34.4499 18.74 24.5399 22.84 14.9399 29.59C6.28994 35.68 0.949941 41.71 0.729941 41.96C-0.240059 43.06 -0.240059 44.71 0.729941 45.81C0.949941 46.06 6.29994 52.09 14.9499 58.18C24.4699 64.87 34.2899 68.97 43.6999 70.21C31.7099 67.47 22.7299 56.71 22.7299 43.9L22.7199 43.89Z" fill="url(#paint0_linear_190_233)" />
@@ -69,6 +72,7 @@
                                     </clipPath>
                                 </defs>
                             </svg>
+                            @endif
 
                             <h5 class="mt-3 bold">{{ $v1?->{"head_title_{$locale}"} ?? __('home.vision') }}</h5>
                         </div>
@@ -79,6 +83,9 @@
                 <div class="col-xl-6 mb-4" data-entrance="from-top">
                     <div class="d-xl-flex gap-4 about-section">
                         <div style="min-width: max-content;" class="text-center">
+                            @if($v2?->icon_url)
+                                <img src="{{ $v2->icon_url }}" alt="{{ $v2?->{"head_title_{$locale}"} ?? ' ' }}" width="87" height="87" style="object-fit: contain;" />
+                            @else
                             <svg xmlns="http://www.w3.org/2000/svg" width="87" height="87" viewBox="0 0 87 87" fill="none">
                                 <g clip-path="url(#clip0_190_272)">
                                     <path d="M2.7048 57.8713C2.01476 57.8713 1.32473 57.6091 0.786496 57.0709C-0.276163 56.0084 -0.276163 54.2974 0.786496 53.2349L9.39817 44.6246C10.4608 43.5621 12.1721 43.5621 13.2348 44.6246C14.2974 45.6871 14.2974 47.3981 13.2348 48.4606L4.62311 57.0709C4.09868 57.5953 3.40864 57.8713 2.7048 57.8713Z" fill="url(#paint0_linear_190_272)" />
@@ -108,6 +115,7 @@
                                     </clipPath>
                                 </defs>
                             </svg>
+                            @endif
 
                             <h5 class="mt-3 bold">{{ $v2?->{"head_title_{$locale}"} ?? ' ' }}</h5>
                         </div>
@@ -119,6 +127,9 @@
                     <div class="col-xl-12 mb-4" data-entrance="from-top">
                         <div class="d-xl-flex gap-4 about-section">
                             <div style="min-width: max-content;" class="text-center">
+                                @if($message?->icon_url)
+                                    <img src="{{ $message->icon_url }}" alt="{{ $message?->{"head_title_{$locale}"} ?? '' }}" width="89" height="89" style="object-fit: contain;" />
+                                @else
                                 <svg xmlns="http://www.w3.org/2000/svg" width="89" height="89" viewBox="0 0 89 89" fill="none">
                                     <g clip-path="url(#clip0_190_247)">
                                         <path d="M29.3945 14.2176C29.4269 14.1206 29.4377 14.0343 29.4701 13.9373H19.2091C16.6736 13.9373 14.2891 15.1235 12.7462 17.1294L2.13999 31.052C1.36313 32.0657 0.845234 33.252 0.618652 34.5137H23.6545L29.3945 14.2284V14.2176Z" fill="url(#paint0_linear_190_247)" />
@@ -168,6 +179,7 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
+                                @endif
 
                                 <h5 class="mt-3 bold">{{ $message?->{"head_title_{$locale}"} }}</h5>
                             </div>
